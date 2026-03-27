@@ -17,7 +17,7 @@ function getCategory(product) {
 async function fetchAllProducts() {
   let allProducts = [];
   let page = 1;
-  const limit = 100; // Printify max per page
+  const limit = 50; // Printify max per page
 
   while (true) {
     const res = await fetch(
