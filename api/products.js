@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await fetch(
-      `https://api.printify.com/v1/shops/${SHOP_ID}/products.json?limit=20`,
+      `https://api.printify.com/v1/shops/${SHOP_ID}/products.json?limit=50`,
       {
         headers: {
           'Authorization': `Bearer ${PRINTIFY_TOKEN}`,
@@ -27,9 +27,11 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    // Shape the data — only send what the frontend needs
+    // Only show products that are published AND visible on the Pop-Up Store
+    // p.visible = true means it's toggled ON in the Pop-Up Store
+    // p.published = true means it has been published (not a draft)
     const products = (data.data || [])
-      .filter(p => p.visible)
+      .filter(p => p.visible === true && p.published === true)
       .map(p => {
         const variant = p.variants?.find(v => v.is_enabled) || p.variants?.[0];
         const image = p.images?.find(i => i.is_default) || p.images?.[0];
