@@ -27,18 +27,29 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    // Only show products that are published AND visible on the Pop-Up Store
-    // p.visible = true means it's toggled ON in the Pop-Up Store
-    // p.published = true means it has been published (not a draft)
+    // Debug: return raw fields so we can see exactly what Printify sends
+    if (req.query.debug === '1') {
+      return res.status(200).json({
+        total: data.data?.length,
+        products: data.data?.map(p => ({
+          id: p.id,
+          title: p.title,
+          visible: p.visible,
+          published: p.published,
+          status: p.status,
+        }))
+      });
+    }
+
+    // Filter: only show products that are visible (published to Pop-Up Store)
     const products = (data.data || [])
-      .filter(p => p.visible === true && p.published === true)
+      .filter(p => p.visible === true)
       .map(p => {
         const variant = p.variants?.find(v => v.is_enabled) || p.variants?.[0];
         const image = p.images?.find(i => i.is_default) || p.images?.[0];
         return {
           id: p.id,
           title: p.title,
-          description: p.description,
           price: variant ? (variant.price / 100).toFixed(2) : null,
           image: image ? image.src : null,
           url: `https://mamimayhem.printify.me/products/${p.id}`,
