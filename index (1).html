@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Mami Mayhem Clothing Co. — Funny, unfiltered tees for people who say the quiet part out loud."/>
+<title>Mami Mayhem Clothing Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet"/>
+
+<style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --hot-pink: #FF2D78;
+  --deep-pink: #C4005A;
+  --neon-yellow: #FFE600;
+  --off-black: #1A1A1A;
+  --cream: #FFF8F0;
+  --white: #ffffff;
+  --mid-gray: #888;
+  --light-border: #f0e0e8;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--cream);
+  color: var(--off-black);
+  overflow-x: hidden;
+}
+
+/* ── ADSENSE BANNER TOP ── */
+.adsense-top {
+  background: var(--white);
+  border-bottom: 2px dashed var(--hot-pink);
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+.adsense-top .ad-label {
+  position: absolute;
+  top: 4px; left: 8px;
+  background: var(--neon-yellow);
+  color: var(--off-black);
+  font-size: 0.6rem;
+  font-weight: 900;
+  padding: 1px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+/* ADSENSE SLOT — replace the placeholder div with your AdSense <ins> tag */
+.adsense-top-slot {
+  width: 728px;
+  max-width: 100%;
+  min-height: 90px;
+  background: #f9f0f4;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  font-size: 0.78rem;
+  font-style: italic;
+}
+
+/* ── NAV ── */
+nav {
+  background: var(--off-black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 62px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.nav-logo {
+  font-family: 'Boogaloo', cursive;
+  font-size: 1.6rem;
+  color: var(--hot-pink);
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 1.75rem;
+  align-items: center;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--hot-pink); }
+.nav-links .nav-shop-btn {
+  background: var(--hot-pink);
+  color: #fff;
+  padding: 0.45rem 1.1rem;
+  border-radius: 50px;
+}
+.nav-links .nav-shop-btn:hover { background: var(--deep-pink); color: #fff; }
+.nav-hamburger { display: none; background: none; border: none; cursor: pointer; }
+.nav-hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: #fff; margin: 5px 0; border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--off-black);
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 2rem 5rem;
+  text-align: center;
+}
+.hero-blob-1 {
+  position: absolute; top: -100px; left: -100px;
+  width: 500px; height: 500px;
+  background: var(--hot-pink);
+  border-radius: 50%; opacity: 0.1;
+  animation: blob-drift 8s ease-in-out infinite alternate;
+}
+.hero-blob-2 {
+  position: absolute; bottom: -120px; right: -80px;
+  width: 420px; height: 420px;
+  background: var(--neon-yellow);
+  border-radius: 50%; opacity: 0.07;
+  animation: blob-drift 10s ease-in-out infinite alternate-reverse;
+}
+@keyframes blob-drift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(30px, 20px) scale(1.05); }
+}
+.hero-content { position: relative; z-index: 2; }
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--neon-yellow);
+  margin-bottom: 1.25rem;
+  opacity: 0;
+  animation: fade-up 0.6s 0.1s forwards;
+}
+.hero h1 {
+  font-family: 'Boogaloo', cursive;
+  font-size: clamp(4rem, 12vw, 8rem);
+  color: #fff;
+  line-height: 0.95;
+  margin-bottom: 0.75rem;
+  opacity: 0;
+  animation: fade-up 0.6s 0.25s forwards;
+}
+.hero h1 span { color: var(--hot-pink); }
+.hero-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.55);
+  max-width: 500px;
+  margin: 1rem auto 2.5rem;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fade-up 0.6s 0.4s forwards;
+}
+.hero-btns {
+  display: flex; gap: 1rem;
+  justify-content: center; flex-wrap: wrap;
+  opacity: 0;
+  animation: fade-up 0.6s 0.55s forwards;
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.btn-primary {
+  background: var(--hot-pink);
+  color: #fff; border: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem; font-weight: 900;
+  padding: 0.9rem 2.25rem;
+  border-radius: 50px; cursor: pointer;
+  text-transform: uppercase; letter-spacing: 1px;
+  text-decoration: none; display: inline-block;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--deep-pink); transform: scale(1.04); }
+.btn-outline {
+  background: transparent; color: #fff;
+  border: 2px solid rgba(255,255,255,0.3);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem; font-weight: 800;
+  padding: 0.9rem 2.25rem;
+  border-radius: 50px; cursor: pointer;
+  text-transform: uppercase; letter-spacing: 1px;
+  text-decoration: none; display: inline-block;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline:hover { border-color: var(--hot-pink); color: var(--hot-pink); }
+
+/* ── MARQUEE ── */
+.marquee-strip {
+  background: var(--hot-pink);
+  overflow: hidden; white-space: nowrap;
+  padding: 0.6rem 0;
+}
+.marquee-inner {
+  display: inline-block;
+  animation: marquee 22s linear infinite;
+  font-family: 'Boogaloo', cursive;
+  font-size: 1.05rem; color: #fff; letter-spacing: 2px;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── SHOP SECTION ── */
+.shop-wrap {
+  background: var(--cream);
+  padding: 5rem 2rem;
+}
+.shop-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 2.5rem;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .shop-inner { grid-template-columns: 1fr; }
+  .ad-sidebar { display: none; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: block; }
+}
+
+.section-title {
+  font-family: 'Boogaloo', cursive;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  color: var(--off-black);
+  margin-bottom: 0.2rem;
+  line-height: 1;
+}
+.section-title span { color: var(--hot-pink); }
+.section-sub {
+  font-size: 0.88rem;
+  color: var(--mid-gray);
+  margin-bottom: 1.75rem;
+}
+
+/* Filter pills */
+.filter-row {
+  display: flex; gap: 0.6rem;
+  flex-wrap: wrap; margin-bottom: 2rem;
+}
+.filter-pill {
+  background: var(--white);
+  border: 2px solid var(--light-border);
+  border-radius: 50px;
+  padding: 0.35rem 1rem;
+  font-size: 0.78rem; font-weight: 800;
+  cursor: pointer; transition: all 0.2s;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  font-family: 'Nunito', sans-serif;
+}
+.filter-pill:hover,
+.filter-pill.active {
+  background: var(--hot-pink);
+  border-color: var(--hot-pink);
+  color: #fff;
+}
+
+/* Product grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1.5rem;
+}
+.product-card {
+  background: var(--white);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 2px solid var(--light-border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(255,45,120,0.14);
+}
+.product-img {
+  background: var(--off-black);
+  height: 210px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; padding: 1rem;
+}
+.tshirt-text {
+  font-family: 'Boogaloo', cursive;
+  font-size: 1rem;
+  color: var(--hot-pink);
+  text-align: center;
+  line-height: 1.4;
+}
+.product-badge {
+  position: absolute; top: 10px; right: 10px;
+  background: var(--neon-yellow);
+  color: var(--off-black);
+  font-size: 0.62rem; font-weight: 900;
+  padding: 3px 9px; border-radius: 20px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.product-info { padding: 1rem 1.1rem 1.2rem; }
+.product-name {
+  font-size: 0.93rem; font-weight: 800;
+  margin-bottom: 0.2rem;
+}
+.product-price {
+  color: var(--hot-pink);
+  font-size: 1.1rem; font-weight: 900;
+  margin-bottom: 0.75rem;
+}
+/* !! IMPORTANT: Replace href="#" with the actual product URL from mamimayhem.printify.me !! */
+.product-btn {
+  display: block; width: 100%;
+  background: var(--off-black); color: #fff;
+  border: none; border-radius: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.8rem; font-weight: 800;
+  padding: 0.65rem; cursor: pointer;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  text-align: center; text-decoration: none;
+  transition: background 0.2s;
+}
+.product-btn:hover { background: var(--hot-pink); }
+
+/* ── AD SIDEBAR ── */
+.ad-sidebar {
+  display: flex; flex-direction: column; gap: 1.25rem;
+  position: sticky; top: 80px;
+}
+
+/* ADSENSE SIDEBAR SLOTS */
+/* Replace each .adsense-slot div with your AdSense <ins> tag when ready */
+.adsense-slot {
+  background: var(--white);
+  border: 2px dashed #e8d8e0;
+  border-radius: 14px;
+  min-height: 250px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0.5rem; padding: 1rem; text-align: center;
+  position: relative;
+}
+.adsense-slot .ad-label {
+  position: absolute; top: 8px; left: 10px;
+  background: var(--neon-yellow);
+  color: var(--off-black);
+  font-size: 0.58rem; font-weight: 900;
+  padding: 2px 7px; border-radius: 3px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.adsense-slot p {
+  font-size: 0.75rem; color: #ccc; font-style: italic;
+}
+
+/* ── ABOUT ── */
+.about-section {
+  background: var(--off-black);
+  padding: 5rem 2rem;
+  text-align: center;
+}
+.about-section h2 {
+  font-family: 'Boogaloo', cursive;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  color: #fff; margin-bottom: 1.25rem;
+}
+.about-section h2 span { color: var(--hot-pink); }
+.about-section p {
+  max-width: 580px; margin: 0 auto 1.5rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.8; font-size: 0.95rem;
+}
+.vibes-row {
+  display: flex; justify-content: center;
+  gap: 0.75rem; flex-wrap: wrap; margin-top: 1.75rem;
+}
+.vibe-pill {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: rgba(255,255,255,0.7);
+  font-size: 0.78rem; font-weight: 700;
+  padding: 0.4rem 1.1rem; border-radius: 50px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+/* ── ADSENSE BOTTOM BANNER ── */
+.adsense-bottom {
+  background: var(--white);
+  border-top: 2px dashed var(--hot-pink);
+  min-height: 100px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem; position: relative;
+}
+.adsense-bottom .ad-label {
+  position: absolute; top: 4px; left: 8px;
+  background: var(--neon-yellow);
+  color: var(--off-black);
+  font-size: 0.6rem; font-weight: 900;
+  padding: 1px 6px; border-radius: 3px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+/* Replace with AdSense <ins> tag */
+.adsense-bottom-slot {
+  width: 728px; max-width: 100%; min-height: 90px;
+  background: #f9f0f4; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  color: #ccc; font-size: 0.78rem; font-style: italic;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: #111;
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  padding: 2.5rem 2rem;
+  font-size: 0.78rem;
+}
+.footer-logo {
+  font-family: 'Boogaloo', cursive;
+  font-size: 1.8rem; color: var(--hot-pink);
+  display: block; margin-bottom: 0.75rem;
+  text-decoration: none;
+}
+.footer-links {
+  display: flex; justify-content: center;
+  gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem;
+}
+.footer-links a {
+  color: rgba(255,255,255,0.4);
+  text-decoration: none; font-weight: 700;
+  font-size: 0.75rem; text-transform: uppercase;
+  letter-spacing: 0.5px; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--hot-pink); }
+footer p { margin-top: 0.5rem; font-size: 0.7rem; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     TOP ADSENSE BANNER
+     STEP: Replace the div.adsense-top-slot below
+     with your AdSense <ins class="adsbygoogle"> tag
+     once your account is approved.
+════════════════════════════════════════════ -->
+<div class="adsense-top">
+  <span class="ad-label">Ad</span>
+  <!-- REPLACE THIS DIV WITH ADSENSE TAG -->
+  <div class="adsense-top-slot">AdSense 728×90 — add your tag here once approved</div>
+</div>
+
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="#" class="nav-logo">Mami Mayhem Co.</a>
+  <div class="nav-links">
+    <a href="#shop">Shop</a>
+    <a href="#about">About</a>
+    <a href="mailto:mamimayhem@email.com">Contact</a>
+    <a href="https://mamimayhem.printify.me" target="_blank" class="nav-shop-btn">Shop Now</a>
+  </div>
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-blob-1"></div>
+  <div class="hero-blob-2"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Clothing for people who say the quiet part out loud</span>
+    <h1>Mami<br/><span>Mayhem</span></h1>
+    <p class="hero-sub">Funny. Unfiltered. Built for anyone with a pulse and zero patience for small talk. No corporate polish. No apologies.</p>
+    <div class="hero-btns">
+      <a href="https://mamimayhem.printify.me" target="_blank" class="btn-primary">Shop the Drop</a>
+      <a href="#shop" class="btn-outline">Browse Tees</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ MARQUEE ═══ -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-inner">
+    say it with a shirt &nbsp;✦&nbsp; unfiltered &amp; unapologetic &nbsp;✦&nbsp; for the chronically real &nbsp;✦&nbsp; wearing your personality &nbsp;✦&nbsp; zero chill required &nbsp;✦&nbsp; ships via printify &nbsp;✦&nbsp; say it with a shirt &nbsp;✦&nbsp; unfiltered &amp; unapologetic &nbsp;✦&nbsp; for the chronically real &nbsp;✦&nbsp; wearing your personality &nbsp;✦&nbsp; zero chill required &nbsp;✦&nbsp; ships via printify &nbsp;✦&nbsp;
+  </div>
+</div>
+
+
+<!-- ═══ SHOP ═══ -->
+<div class="shop-wrap" id="shop">
+  <div class="shop-inner">
+
+    <!-- PRODUCTS -->
+    <div>
+      <h2 class="section-title">Latest <span>Drops</span></h2>
+      <p class="section-sub">Fresh tees. Ships straight to your door. Fulfilled by Printify.</p>
+
+      <div class="filter-row">
+        <button class="filter-pill active">All</button>
+        <button class="filter-pill">Sarcastic</button>
+        <button class="filter-pill">Relatable</button>
+        <button class="filter-pill">Chaotic</button>
+        <button class="filter-pill">Work Vibes</button>
+      </div>
+
+      <div class="product-grid">
+
+        <!-- ═══════════════════════════════════════
+             PRODUCT CARDS
+             STEP: For each card below:
+             1. Update the tshirt-text to match the real design
+             2. Update the product-name
+             3. Update the product-price
+             4. Replace href="https://mamimayhem.printify.me" with
+                the direct link to THAT product on the Pop-Up Store
+                (get individual product URLs from your Printify dashboard)
+        ════════════════════════════════════════ -->
+
+        <div class="product-card">
+          <div class="product-img">
+            <div class="tshirt-text">😐<br/>"I didn't sign up<br/>for any of this<br/>but here we are"</div>
+            <span class="product-badge">Bestseller</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Here We Are Tee</div>
+            <div class="product-price">$28</div>
+            <a href="https://mamimayhem.printify.me" target="_blank" class="product-btn">Buy Now</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img">
+            <div class="tshirt-text">☕<br/>"Powered by coffee<br/>&amp; bad decisions"</div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Bad Decisions Tee</div>
+            <div class="product-price">$26</div>
+            <a href="https://mamimayhem.printify.me" target="_blank" class="product-btn">Buy Now</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img">
+            <div class="tshirt-text">🙃<br/>"Fine.<br/>Everything is fine."</div>
+            <span class="product-badge">New</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Everything is Fine Tee</div>
+            <div class="product-price">$28</div>
+            <a href="https://mamimayhem.printify.me" target="_blank" class="product-btn">Buy Now</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img">
+            <div class="tshirt-text">💀<br/>"Another meeting<br/>that could've been<br/>an email"</div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Pointless Meeting Tee</div>
+            <div class="product-price">$26</div>
+            <a href="https://mamimayhem.printify.me" target="_blank" class="product-btn">Buy Now</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img">
+            <div class="tshirt-text">😤<br/>"I love everyone.<br/>From a distance."</div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">From a Distance Tee</div>
+            <div class="product-price">$26</div>
+            <a href="https://mamimayhem.printify.me" target="_blank" class="product-btn">Buy Now</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img">
+            <div class="tshirt-text">🔥<br/>"Currently<br/>holding it together<br/>with vibes"</div>
+            <span class="product-badge">New</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Vibes Only Tee</div>
+            <div class="product-price">$28</div>
+            <a href="https://mamimayhem.printify.me" target="_blank" class="product-btn">Buy Now</a>
+          </div>
+        </div>
+
+      </div><!-- /product-grid -->
+
+      <!-- View all on Printify -->
+      <div style="text-align:center; margin-top: 2.5rem;">
+        <a href="https://mamimayhem.printify.me" target="_blank" class="btn-primary">
+          View All Designs on the Store
+        </a>
+      </div>
+
+    </div><!-- /products -->
+
+
+    <!-- ═══════════════════════════════════════
+         AD SIDEBAR
+         STEP: Replace each .adsense-slot div
+         with your AdSense <ins> tag once approved.
+         Recommended sizes: 300×250 or 300×600
+    ════════════════════════════════════════ -->
+    <aside class="ad-sidebar">
+
+      <div class="adsense-slot">
+        <span class="ad-label">Ad</span>
+        <!-- REPLACE WITH ADSENSE TAG (300×250) -->
+        <p>AdSense 300×250<br/>Add your tag here once approved</p>
+      </div>
+
+      <div class="adsense-slot">
+        <span class="ad-label">Ad</span>
+        <!-- REPLACE WITH ADSENSE TAG (300×250) -->
+        <p>AdSense 300×250<br/>Add your tag here once approved</p>
+      </div>
+
+    </aside>
+
+  </div><!-- /shop-inner -->
+</div><!-- /shop-wrap -->
+
+
+<!-- ═══ ABOUT ═══ -->
+<section class="about-section" id="about">
+  <h2>Clothing for <span>Real People</span></h2>
+  <p>Mami Mayhem started because someone had to say the quiet parts out loud — on a shirt. We make tees for anyone who's done pretending, over the small talk, and just wants to wear exactly how they feel. No filter. No fluff. Just honest threads.</p>
+  <a href="https://mamimayhem.printify.me" target="_blank" class="btn-primary">Shop the Full Collection</a>
+  <div class="vibes-row">
+    <span class="vibe-pill">Funny for real</span>
+    <span class="vibe-pill">Unisex sizing</span>
+    <span class="vibe-pill">Print on demand</span>
+    <span class="vibe-pill">Ships worldwide</span>
+    <span class="vibe-pill">Zero apologies</span>
+  </div>
+</section>
+
+
+<!-- ═══ BOTTOM ADSENSE BANNER ═══ -->
+<div class="adsense-bottom">
+  <span class="ad-label">Ad</span>
+  <!-- REPLACE THIS DIV WITH ADSENSE TAG -->
+  <div class="adsense-bottom-slot">AdSense 728×90 — add your tag here once approved</div>
+</div>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <a href="#" class="footer-logo">Mami Mayhem Co.</a>
+  <div class="footer-links">
+    <a href="#shop">Shop</a>
+    <a href="#about">About</a>
+    <a href="https://mamimayhem.printify.me" target="_blank">Full Store</a>
+    <a href="https://instagram.com/mamimayhem" target="_blank">Instagram</a>
+    <a href="https://tiktok.com/@mamimayhem" target="_blank">TikTok</a>
+    <a href="mailto:mamimayhem@email.com">Contact</a>
+  </div>
+  <p>© 2025 Mami Mayhem Clothing Co. — Fulfilled by Printify. Designed for chaos. Worn by everyone.</p>
+</footer>
+
+
+<script>
+  // Filter pills (visual only — full filtering needs real product data/tags)
+  document.querySelectorAll('.filter-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
