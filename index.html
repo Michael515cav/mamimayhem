@@ -398,21 +398,33 @@ document.querySelectorAll('.dropdown a[data-cat]').forEach(link => {
 async function loadProducts() {
   const grid = document.getElementById('product-grid');
   try {
-    const res = await fetch('/api/products');
-    if (!res.ok) throw new Error('API error');
-    const { products } = await res.json();
+    let page = 1;
+    let hasMore = true;
 
-    if (!products || products.length === 0) {
-      grid.innerHTML = `<div class="no-results">No products found. <a href="https://mamimayhem.printify.me" target="_blank">Browse the full store →</a></div>`;
-      return;
+    while (hasMore) {
+      const res = await fetch(`/api/products?page=${page}`);
+      if (!res.ok) throw new Error('API error');
+      const data = await res.json();
+
+      const batch = data.products || [];
+      allProducts = allProducts.concat(batch);
+      hasMore = data.hasMore === true;
+      page++;
+
+      renderTabs(allProducts);
+      renderProducts(allProducts);
+
+      if (page > 20) break;
     }
 
-    allProducts = products;
-    renderTabs(allProducts);
-    renderProducts(allProducts);
+    if (allProducts.length === 0) {
+      grid.innerHTML = `<div class="no-results">No products found. <a href="https://mamimayhem.printify.me" target="_blank">Browse the full store →</a></div>`;
+    }
 
   } catch (err) {
-    grid.innerHTML = `<div class="no-results">Couldn't load products. <a href="https://mamimayhem.printify.me" target="_blank">Visit the full store →</a></div>`;
+    if (allProducts.length === 0) {
+      grid.innerHTML = `<div class="no-results">Couldn't load products. <a href="https://mamimayhem.printify.me" target="_blank">Visit the full store →</a></div>`;
+    }
   }
 }
 
