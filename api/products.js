@@ -41,7 +41,7 @@ export default async function handler(req, res) {
           description: p.description,
           price: variant ? (variant.price / 100).toFixed(2) : null,
           image: image ? image.src : null,
-          url: `https://mami-mayhem.printify.me/products/${p.id}`,
+          url: `https://mamimayhem.printify.me/products/${p.id}`,
           tags: p.tags || [],
         };
       });
